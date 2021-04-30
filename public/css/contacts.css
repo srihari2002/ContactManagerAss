@@ -1,0 +1,28 @@
+.contact-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.contact-item {
+    width: 20rem;
+    max-width: 95%;
+    margin: 1rem;
+}
+
+.contact__name {
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+.contact__price {
+    text-align: center;
+    color: #4d4d4d;
+    margin-bottom: 0.5rem;
+}
+
+.contact__email {
+    text-align: center;
+    
+}

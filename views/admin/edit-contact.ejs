@@ -1,0 +1,52 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/contacts.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+        <form class="contact-form" action="/<% if (editing) { %>edit-contact<% } else { %>add-contact<% } %>" method="POST">
+            <div class="form-control">
+                <label for="name">Name</label>
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'name') ? 'invalid' : '' %>"
+                    type="text" 
+                    name="name" 
+                    id="name" 
+                    value="<% if (editing || hasError) { %><%= contact.name %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="mblnum">Mobile Number</label>
+
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'mblnum') ? 'invalid' : '' %>"
+                    type="text" 
+                    name="mblnum" 
+                    id="mblnum" 
+                    value="<% if (editing || hasError) { %><%= contact.mobilenumber %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                      
+                    value="<% if (editing || hasError) { %><%= contact.email %><% } %>">
+            </div>
+            
+            <% if (editing) { %>
+                <input type="hidden" value="<%= contact._id %>" name="contactId">
+            <% } %>
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit"><% if (editing) { %>Update Contact<% } else { %>Add Contact<% } %></button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>
